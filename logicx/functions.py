@@ -1,5 +1,5 @@
 import string
-import globals
+from . import globals
 valid_input=[1,0,True,False] # Valid Input For Boolean Functions
 def input_num(input_str):
     '''

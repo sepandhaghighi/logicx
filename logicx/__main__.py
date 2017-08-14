@@ -1,7 +1,7 @@
-from VLSI import *
-from parser2 import *
+from .VLSI import *
+from .parser2 import *
 import platform
-import globals
+from . import globals
 import sys
        
 def run(inputstring):

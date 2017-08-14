@@ -1,7 +1,7 @@
-from functions import * # Outside Of The Class Functions
-from logic import *
-
-import globals
+from .functions import * # Outside Of The Class Functions
+from .logic import *
+import os
+from . import globals
 import time # Import Time Module For Counter Performance
 import datetime # Import Date And Time For Saving Result
 
@@ -214,7 +214,10 @@ class VLSI:
 
     def make_verilog(self):
         file_name = 'F' + self.packname.replace("#",'')
-        verilog_file=open('../source/Verilogs/' + file_name +'.v',"w")
+        dir=os.listdir()
+        if "logicx_Verilog" not in dir:
+            os.mkdir("logicx_Verilog")
+        verilog_file=open(os.path.join("logicx_Verilog" ,file_name +'.v'),"w")
         verilog_file.write('module ' + file_name + ' (')
         for v in range(0,len(self.inputs)):
             if (v != 0):

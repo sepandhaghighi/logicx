@@ -1,5 +1,5 @@
-from VLSI import *
-import globals
+from .VLSI import *
+from . import globals
 
 def make_table():
     for counter in range(0,2**(len(globals.inputs.strlist))):
