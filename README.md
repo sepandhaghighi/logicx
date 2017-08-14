@@ -4,7 +4,7 @@
 
 - [x] Delete Useless Files
 - [x] Merge All Functions In One Package
-- [ ] Test All Functions And Outputs
+- [x] Test All Functions And Outputs
 - [ ] Fix Outputs Format
 - [ ] Functions Documentation
 - [ ] Update Readme File
