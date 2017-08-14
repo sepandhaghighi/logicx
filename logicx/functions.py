@@ -4,8 +4,11 @@ from . import globals
 valid_input=[1,0,True,False] # Valid Input For Boolean Functions
 def input_num(input_str):
     '''
-    (VLSI_Object)-> (Input_list,Numer Of Inputs)
-'''
+    This function calculate number of input expression variables
+    :param input_str: input expression
+    :type input_str:str
+    :return: number of variables as int
+    '''
     try:
         input_list=[]
         for i in input_str:
@@ -15,10 +18,14 @@ def input_num(input_str):
     except:
         print("Please Pass VLSI Object To Function")
         return None
-# This Function Count Boolean Operation In Input String Separately
+
 def input_op(input_str):
-
-
+    '''
+    This Function Count Boolean Operation In Input String Separately
+    :param input_str: input expression
+    :type input_str:str
+    :return: return number of each operation as a list [AND,OR,XOR,XNOR]
+    '''
     try:
         counter=[0,0,0,0]
         input_list=[]
@@ -39,8 +46,11 @@ def input_op(input_str):
             
 def check_valid(input_string):
     '''
-    (Str)->Boolean
-'''
+    This function check input expression validation ([A-Z]+['+^.()#!]
+    :param input_str: input expression
+    :type input_str:str
+    :return: True if input is valid and False otherwise
+    '''
     try:
         for i in input_string:
             if i not in string.ascii_letters+ string.digits +"'+^.() #!":
@@ -49,6 +59,7 @@ def check_valid(input_string):
     except:
         print("Problem In Input")
         return None
+
 def table_maker(obj):
     pass
 def func_creator(obj):
@@ -56,6 +67,10 @@ def func_creator(obj):
 
 
 def make_script_files():
+    '''
+    This function generate .scr files in logicx_Scripts folder
+    :return: None
+    '''
     if "logicx_Scripts" not in os.listdir():
         os.mkdir("logicx_Scripts")
     for t in globals.VLSIlist:
