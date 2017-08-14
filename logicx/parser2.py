@@ -2,6 +2,10 @@ from .VLSI import *
 from . import globals
 
 def make_table():
+    '''
+    This function create and save table of expression
+    :return: None (save in globals.table)
+    '''
     for counter in range(0,2**(len(globals.inputs.strlist))):
         temp = counter
         for i in range(0,len(globals.inputs.strlist)):
@@ -12,6 +16,10 @@ def make_table():
         counter+=1
 
 def print_result():
+    '''
+    This function print output result
+    :return: None
+    '''
     outstr = ''
     for i in globals.inputs.strlist:
         outstr += i
@@ -29,6 +37,10 @@ def print_result():
         print(outstr)
 
 def calculate_result():
+    '''
+    This function caluclate result of parsed expressin
+    :return: result as str
+    '''
     for temp in globals.VLSIlist:
         while (not temp.function()):
  #           output = temp.func[len(temp.func)-1].output
@@ -40,7 +52,12 @@ def calculate_result():
 
 
 def parse_string(inputstring):
-    
+    '''
+    This function split and parse input expression and save in VLSI format
+    :param inputstring: input expression
+    :type inputstring : str
+    :return: None
+    '''
     start = -2
     end = -1
     indexcounter = 0
