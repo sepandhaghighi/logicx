@@ -55,29 +55,23 @@ def generator(gate_list,not_off=True):
             
                 
                   
-if __name__=="__main__":
-    file_list=os.listdir()
-    for i in range(len(file_list)):
-        print(str(i+1)+"- "+file_list[i]+"\n")
-    input_str=input("Please Enter One Of This File For Generate : \n")
-    if int(input_str)<=len(file_list):
-        file=open(file_list[int(input_str)-1],'w')
-        gate_number=input("Please Enter Number Of 2-Input Gates in File : ")
-        var_number=input("Please Enter Total Number Of Var in File")
-        try:
-            gate_form=Gate_Gen(int(gate_number),int(var_number))
-            print(gate_form)
-            gen_function=generator(gate_form)
-            file.write(gen_function)
-            file.close()
-            print("Function : "+gen_function)
-            print("Done!!")
-        except:
-            print("Wrong Number Inserted")
-            file.close()
-        
-    else:
-        "Wrong Files Number"
+def run_generator():
+    file_name=input("Please Enter File Name")
+    file=open(file_name+'.txt','w')
+    gate_number=input("Please Enter Number Of 2-Input Gates in File : ")
+    var_number=input("Please Enter Total Number Of Var in File")
+    try:
+        gate_form=Gate_Gen(int(gate_number),int(var_number))
+        print(gate_form)
+        gen_function=generator(gate_form)
+        file.write(gen_function)
+        file.close()
+        print("Function : "+gen_function)
+        print("Done!!")
+    except:
+        print("Wrong Number Inserted")
+        file.close()
+
     
         
         

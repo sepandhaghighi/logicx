@@ -1,4 +1,5 @@
 import string
+import os
 from . import globals
 valid_input=[1,0,True,False] # Valid Input For Boolean Functions
 def input_num(input_str):
@@ -55,10 +56,12 @@ def func_creator(obj):
 
 
 def make_script_files():
+    if "logicx_Scripts" not in os.listdir():
+        os.mkdir("logicx_Scripts")
     for t in globals.VLSIlist:
         file_name = 'S' + t.packname.replace("#",'')
         verilog_name = 'F'+ t.packname.replace('#','')
-        script_file=open('../scripts/' + file_name +'.scr',"w")
+        script_file=open(os.path.join("logicx_Scripts",file_name +'.scr'),"w")
         script_file.write('set power_preserve_rtl_hier_names "true"\n')
         script_file.write('analyze -format verilog { ../source/Verilogs/' + verilog_name + '.v' +'}\n')
         script_file.write('elaborate ' + verilog_name+'\n')

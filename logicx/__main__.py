@@ -2,6 +2,7 @@ from .VLSI import *
 from .parser2 import *
 import platform
 from . import globals
+from .generator_2 import *
 import sys
        
 def run(inputstring):
@@ -63,7 +64,7 @@ if __name__=="__main__":
     args=sys.argv
     if len(args)>1:
         if args[1].upper()=="GEN":
-            pass
+            run_generator()
         else:
             file_name=args[1]
             file=open(file_name)
