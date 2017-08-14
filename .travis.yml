@@ -10,3 +10,7 @@ install:
 
 script:
   - python3 -m logicx test
+  - python3 -m logicx gen
+  - testfile
+  - 10
+  - 10
