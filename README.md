@@ -18,7 +18,9 @@
 ### Source Code
 - Download [Version 0.1](https://github.com/sepandhaghighi/logicx/archive/v0.1.zip) or [Latest Source ](https://github.com/sepandhaghighi/logicx/archive/master.zip)
 
-- `python3 setup.py install` or `python setup.py install` (Need root access)				
+- `python3 setup.py install` or `python setup.py install` (Need root access)	
+
+			
 
 ### PyPI
 
@@ -27,6 +29,15 @@
 - `pip install logicx` or `pip3 install logicx` (Need root access)
 
 
+## Usage
+
+### Random Logic Generator		
+
+`python -m logicx gen`
+
+### Parser And Splitter			
+
+`python -m logicx inputlogic.txt`			
 
 
 ## Issues & Bug Reports			
