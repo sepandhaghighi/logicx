@@ -1,1 +1,0 @@
-Test_Case1.txt : ,Input Var Number: 7 Input Operation Number: 8 Elapsed Time: 0.12369553797179833 Sec  2017-08-13 01:15:49.507574 CPU: i386
