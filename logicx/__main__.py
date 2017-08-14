@@ -6,6 +6,18 @@ from .generator_2 import *
 import sys
 import os
 def save_log(input_var_num,input_op_num,parser_perf_time,table_perf_time):
+    '''
+    This function save logicx log files
+    :param input_var_num: number of input boolean expression variable
+    :type input_var_num:int
+    :param input_op_num: number of input boolean expression operator
+    :type input_op_num:int
+    :param parser_perf_time: parser elapsed time
+    :type parser_perf_time:str
+    :param table_perf_time: make table elapsed time
+    :type table_perf_time:str
+    :return: None
+    '''
     today_date=datetime.datetime.today() # Today Date And Local Time For Saving In Performance Text File
     log_dir="logicx_Logs"
     if log_dir not in os.listdir():
@@ -23,6 +35,12 @@ def save_log(input_var_num,input_op_num,parser_perf_time,table_perf_time):
     result_file.close()  # Close Parser Text File
     result_file_2.close()  # Close Table Maker File
 def run(inputstring):
+    '''
+    This function apply  main operations on input expression
+    :param inputstring: input expression
+    :type inputstring : str
+    :return: None
+    '''
     input_var_num=input_num(inputstring)
     input_op_num=input_op(inputstring)
     globals.init()
@@ -39,38 +57,6 @@ def run(inputstring):
     make_script_files()
     print_result()
     save_log(input_var_num,input_op_num,parser_perf_time,table_perf_time)
-    #print('Variables used:')
-    #for k in range(0,len(globals.varlist.varlist)):
-    #        print(str(k))
-    #        print('value:' + str(globals.varlist.varlist[k]))
-    #        print('string token:' + globals.varlist.strlist[k])
-    #        print()
-
-    #print('VLSI objects:')
-    #for temp in globals.VLSIlist:
-    #    for funcs in temp.func:
-    #        print('first: ' + str(temp.variables[funcs.firstvarptr]))
-    #        print('second: ' + str(temp.variables[funcs.secondvarptr]))
-    #        print('out: ' + str(temp.variables[funcs.output]))
-    #        funcs.printobj()
-    #        print('\n')
-    #    print('next object\n')
-    #for k in range(0,len(globals.inputs.strlist)):
-    #        print(str(k))
-    #        print('value:' + str(globals.inputs.ptrlist[k]))
-    #        print('string token:' + globals.inputs.strlist[k])
-    #        print()
-    #print('Variables used:')
-    #for k in range(0,len(varlist.varlist)):
-    #        print(str(k))
-    #        print('value:' + str(varlist.varlist[k]))
-    #        print('string token:' + varlist.strlist[k])
-    #        print()
-    #for k in range(0,len(inputs.strlist)):
-    #        print(str(k))
-    #        print('value:' + str(inputs.ptrlist[k]))
-    #        print('string token:' + inputs.strlist[k])
-    #        print()
 if __name__=="__main__":
     args=sys.argv
     if len(args)>1:
