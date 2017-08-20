@@ -6,6 +6,10 @@ import time # Import Time Module For Counter Performance
 import datetime # Import Date And Time For Saving Result
 
 class funcObject:
+    '''
+    Basic object to handle logic functions
+    It can either represent a single input function like Not, or dual input functions like And, Or
+    '''
     def __init__(self,firstvar,outputvar,secondvar=-1,funct=Not):
         self.func = funct
         self.firstvarptr = firstvar
@@ -13,12 +17,27 @@ class funcObject:
         self.output = outputvar
         
     def function(self,c,d):
+        '''
+        Run the function using the values gived to the function
+        :param c: input 1 binary
+        :param d: input 2 binary
+        :return: binary
+        '''
         if (self.func != Not):
             return self.func(c,d)
     def Notfunction(self,ar):
+        '''
+        Run the Not function using the given value
+        :param ar: input to be inverted
+        :return: inverse of ar
+        '''
         if (self.func == Not):
             return self.func(ar)
     def printobj(self):
+        '''
+        Describe the function in string
+        :return: string containing description of function
+        '''
         toprint = ''
         if (self.func == And):
             toprint = "And"
@@ -49,6 +68,15 @@ class VLSI:
 
     
     def __init__(self,string,output,index):
+        '''
+           Initializer for the VLSI class
+           :param string: input string to be parsed
+           :type string : str
+           :param output: pointer to the variable containing the output value of this object
+           :type output: int
+           :param index: index of the VLSI object, for it to be unique in case of replacing variables
+           :type index: int
+           '''
         if check_valid(string):
             self.inputs = []
             self.wires = []
@@ -174,6 +202,12 @@ class VLSI:
         ##else:
 ##            print("Please Enter Valid String")
     def handle_variable(self,string):
+        '''
+           Handle Variable function
+           this function is used to handle variables that is found in a string.
+           the new variable name is searched in the list of current variables, if there are any hits,
+           the variable is marked as the found variable, and if not a new variable is created with the initial value of 0
+           '''
         for i in range(0,len(globals.varlist.strlist)):
             if (string == globals.varlist.strlist[i]):
                 self.variables.append(i)
@@ -186,6 +220,9 @@ class VLSI:
         self.variables.append(len(globals.varlist.varlist) - 1)
         return len(self.variables) - 1
     def count_sharps(self,string):
+        '''
+           Function for counting the number of times '#' is repeated in a string
+           '''
         counter = 0
         for i in range(0,len(string)):
             if (string[i] == '#'):
@@ -193,13 +230,16 @@ class VLSI:
         return counter
     
     def __str__(self):
-        #This Function Is For Show Object In Print Format
+        #This Function Is For Showing the Object In Print Format
         return "VLSI("+self.input+")"
     def __repr__(self):
         # Representing VLSI Object
         return "VLSI_Object(Input_String="+self.input+")"
 
     def function(self):
+        '''
+           Running the function binded to the VLSI object with given inputs from self.variables array
+           '''
         result = 0
         self.make_verilog()
         for i in range(0,len(self.func)):
@@ -213,6 +253,11 @@ class VLSI:
         return 1
 
     def make_verilog(self):
+        '''
+           Make Verilog file function
+           creates a text file describing the VLSI object using Verilog language
+           this verilog file will be next used in the scripts
+           '''
         file_name = 'F' + self.packname.replace("#",'')
         dir=os.listdir()
         if "logicx_Verilog" not in dir:
@@ -222,12 +267,9 @@ class VLSI:
         for v in range(0,len(self.inputs)):
             if (v != 0):
                  verilog_file.write(' , ')
-#            varname = globals.varlist.strlist[self.variables[v]]
             varname = self.inputs[v]
             if ('#' in varname):
                 varname = 'V' + varname.replace('#','V')
-           # if (varname[0] == '#'):
- #               varname = 'V' + varname.replace('#','')
             verilog_file.write(varname)
         verilog_file.write('); \n')
         for v in range(0,len(self.inputs)-1):
@@ -246,7 +288,6 @@ class VLSI:
             for w in range(0,len(self.wires)):
                 if (w != 0):
                     verilog_file.write(' , ')
- #             wirename = globals.varlist.strlist(self.wires[w])
                 verilog_file.write('W'+globals.varlist.strlist[self.variables[self.wires[w]]].replace('#','W'))
 
             verilog_file.write(';\n\n')
