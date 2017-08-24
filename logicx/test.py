@@ -69,5 +69,39 @@ False
 4
 >>> input_num("((f+h)^(i.d))+((((b+f)+(j^d))'.((i^f)+(f.h)))^(((i^c).(d+a))^((c^i)+(h^g))))")
 9
+>>> globals.init()
+>>> temp=VLSI("(a+b)","test",len(globals.VLSIlist))
+>>> print(temp)
+VLSI((a+b))
+>>> temp
+VLSI_Object(Input_String=(a+b))
+>>> temp.make_verilog()
+>>> import os
+>>> file=open(os.path.join("logicx_Verilog","Ftest.v"),"r")
+>>> globals.VLSIlist.append(temp)
+>>> make_table()
+>>> globals.table
+['0', '0', '1', '1', '1', '1', '1', '1']
+>>> print_result()
+test(ab)   Out
+000   0
+100   0
+010   1
+110   1
+001   1
+101   1
+011   1
+111   1
+>>> temp=VLSI("((a+b).c)+(e+c).(a+c)","test2",len(globals.VLSIlist))
+>>> print(temp)
+VLSI(((a+b).c)+(e+c).(a+c))
+>>> temp
+VLSI_Object(Input_String=((a+b).c)+(e+c).(a+c))
+>>> temp.make_verilog()
+>>> file=open(os.path.join("logicx_Verilog","Ftest.v"),"r")
+>>> globals.VLSIlist.append(temp)
+>>> make_table()
+>>> globals.table
+['0', '0', '1', '1', '1', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']
 
 '''
