@@ -1,0 +1,31 @@
+build: false
+
+environment:
+  matrix:
+
+    - PYTHON: "C:\\Python35"
+      PYTHON_VERSION: "3.5.2"
+      PYTHON_ARCH: "32"
+
+    - PYTHON: "C:\\Python35"
+      PYTHON_VERSION: "3.5.2"
+      PYTHON_ARCH: "64"
+
+
+
+init:
+  - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+
+install:
+  - "%PYTHON%/python.exe setup.py install"
+
+test_script:
+  - "%PYTHON%/python.exe -m logicx test"
+  - "%PYTHON%/python.exe -m logicx gen < testparams.txt"
+  - "%PYTHON%/python.exe -m logicx testfile.txt"
+  - "ls"
+  - "cd logicx_Verilog"
+  - "ls"
+  - "cd .."
+  - "cd logicx_Scripts"
+  - "ls"
