@@ -70,38 +70,63 @@ False
 >>> input_num("((f+h)^(i.d))+((((b+f)+(j^d))'.((i^f)+(f.h)))^(((i^c).(d+a))^((c^i)+(h^g))))")
 9
 >>> globals.init()
->>> temp=VLSI("(a+b)","test",len(globals.VLSIlist))
->>> print(temp)
-VLSI((a+b))
->>> temp
-VLSI_Object(Input_String=(a+b))
->>> temp.make_verilog()
->>> import os
->>> file=open(os.path.join("logicx_Verilog","Ftest.v"),"r")
->>> globals.VLSIlist.append(temp)
+>>> tempobject = VLSI("(a+b)",'#%d#' % 1,len(globals.VLSIlist))
+>>> globals.VLSIlist.append(tempobject)
 >>> make_table()
->>> globals.table
-['0', '0', '1', '1', '1', '1', '1', '1']
 >>> print_result()
-test(ab)   Out
-000   0
-100   0
-010   1
-110   1
-001   1
-101   1
-011   1
-111   1
->>> temp=VLSI("((a+b).c)+(e+c).(a+c)","test2",len(globals.VLSIlist))
->>> print(temp)
-VLSI(((a+b).c)+(e+c).(a+c))
->>> temp
-VLSI_Object(Input_String=((a+b).c)+(e+c).(a+c))
->>> temp.make_verilog()
->>> file=open(os.path.join("logicx_Verilog","Ftest.v"),"r")
->>> globals.VLSIlist.append(temp)
->>> make_table()
+(ab)   Out
+00   0
+10   1
+01   1
+11   1
 >>> globals.table
-['0', '0', '1', '1', '1', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']
+['0', '1', '1', '1']
+>>> print(tempobject)
+VLSI((a+b))
+>>> tempobject
+VLSI_Object(Input_String=(a+b))
+>>> tempobject.make_verilog()
+>>> tempobject = VLSI("(a+b).(c+d)",'#%d#' % 2,len(globals.VLSIlist))
+>>> globals.VLSIlist.append(tempobject)
+>>> make_table()
+>>> print_result()
+(ab)(cd)   Out
+0000   0
+1000   1
+0100   1
+1100   1
+0010   0
+1010   0
+0110   0
+1110   0
+0001   0
+1001   1
+0101   1
+1101   1
+0011   1
+1011   1
+0111   1
+1111   1
+>>> globals.table
+['0', '1', '1', '1', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']
+>>> print(tempobject)
+VLSI((a+b).(c+d))
+>>> tempobject
+VLSI_Object(Input_String=(a+b).(c+d))
+>>> tempobject.make_verilog()
+>>> import os
+>>> file_1=open(os.path.join("logicx_Verilog","F1.v"),"r")
+>>> print(file_1.readlines())
+['module F1 ((a , b) , VV1V); \n', 'input (a , b);\n', 'output VV1V;\n', 'or f0 (VV1V , (a , b));\n', 'endmodule']
+>>> file_2=open(os.path.join("logicx_Verilog","F2.v"),"r")
+>>> print(file_2.readlines())
+['module F2 ((a , b) , (c , d) , VV2V); \n', 'input (a , b) , (c , d);\n', 'output VV2V;\n', 'wire WW1W0W , WW1W1W;\n', '\n', 'or f0 (WW1W0W , (a , b));\n', 'and f1 (WW1W1W , WW1W0W , (c);\n', 'or f2 (VV2V , WW1W1W , d));\n', 'endmodule']
+>>> make_script_files()
+>>> file_3=open(os.path.join("logicx_Scripts","S1.scr"),"r")
+>>> print(file_3.readlines())
+['set power_preserve_rtl_hier_names "true"\n', 'analyze -format verilog { ../source/Verilogs/F1.v}\n', 'elaborate F1\n', 'link\n', 'uniquify -force\n', 'compile -map_effort medium\n', 'change_names -rules verilog -hierarchy\n', 'write -format verilog -hierarchy -output ../netlist/F1.v\n', 'uplevel #0 { report_power -analysis_effort low } > ../Power/F1.txt\n', 'uplevel #0 { report_area -nosplit } > ../Area/F1.txt\n']
+>>> file_4=open(os.path.join("logicx_Scripts","S2.scr"),"r")
+>>> print(file_4.readlines())
+['set power_preserve_rtl_hier_names "true"\n', 'analyze -format verilog { ../source/Verilogs/F2.v}\n', 'elaborate F2\n', 'link\n', 'uniquify -force\n', 'compile -map_effort medium\n', 'change_names -rules verilog -hierarchy\n', 'write -format verilog -hierarchy -output ../netlist/F2.v\n', 'uplevel #0 { report_power -analysis_effort low } > ../Power/F2.txt\n', 'uplevel #0 { report_area -nosplit } > ../Area/F2.txt\n']
 
 '''
