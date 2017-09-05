@@ -64,6 +64,9 @@ def parse_string(inputstring):
     i = 0
     j = 0
 
+    if (inputstring[0] != "("):
+        inputstring = "(" + inputstring + ")"
+
     temp = inputstring
     temp.replace(" ",'')
 
