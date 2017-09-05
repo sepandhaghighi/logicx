@@ -16,7 +16,7 @@ def input_num(input_str):
                 input_list.append(i)
         return len(input_list)
     except:
-        print("Please Pass VLSI Object To Function")
+        print("Please Pass logicx Object To Function")
         return None
 
 def input_op(input_str):
@@ -73,7 +73,7 @@ def make_script_files():
     '''
     if "logicx_Scripts" not in os.listdir():
         os.mkdir("logicx_Scripts")
-    for t in globals.VLSIlist:
+    for t in globals.logicxlist:
         file_name = 'S' + t.packname.replace("#",'')
         verilog_name = 'F'+ t.packname.replace('#','')
         script_file=open(os.path.join("logicx_Scripts",file_name +'.scr'),"w")

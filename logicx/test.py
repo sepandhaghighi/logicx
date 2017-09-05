@@ -70,8 +70,8 @@ False
 >>> input_num("((f+h)^(i.d))+((((b+f)+(j^d))'.((i^f)+(f.h)))^(((i^c).(d+a))^((c^i)+(h^g))))")
 9
 >>> globals.init()
->>> tempobject = VLSI("(a+b)",'#%d#' % 1,len(globals.VLSIlist))
->>> globals.VLSIlist.append(tempobject)
+>>> tempobject = logicx("(a+b)",'#%d#' % 1,len(globals.logicxlist))
+>>> globals.logicxlist.append(tempobject)
 >>> make_table()
 >>> print_result()
 (ab)   Out
@@ -82,12 +82,12 @@ False
 >>> globals.table
 ['0', '1', '1', '1']
 >>> print(tempobject)
-VLSI((a+b))
+logicx((a+b))
 >>> tempobject
-VLSI_Object(Input_String=(a+b))
+logicx_Object(Input_String=(a+b))
 >>> tempobject.make_verilog()
->>> tempobject = VLSI("(a+b).(c+d)",'#%d#' % 2,len(globals.VLSIlist))
->>> globals.VLSIlist.append(tempobject)
+>>> tempobject = logicx("(a+b).(c+d)",'#%d#' % 2,len(globals.logicxlist))
+>>> globals.logicxlist.append(tempobject)
 >>> make_table()
 >>> print_result()
 (ab)(cd)   Out
@@ -110,9 +110,9 @@ VLSI_Object(Input_String=(a+b))
 >>> globals.table
 ['0', '1', '1', '1', '0', '0', '0', '0', '0', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']
 >>> print(tempobject)
-VLSI((a+b).(c+d))
+logicx((a+b).(c+d))
 >>> tempobject
-VLSI_Object(Input_String=(a+b).(c+d))
+logicx_Object(Input_String=(a+b).(c+d))
 >>> tempobject.make_verilog()
 >>> import os
 >>> file_1=open(os.path.join("logicx_Verilog","F1.v"),"r")

@@ -1,4 +1,4 @@
-from .VLSI import *
+from .logicx import *
 from . import globals
 
 def make_table():
@@ -41,11 +41,11 @@ def calculate_result():
     This function caluclate result of parsed expressin
     :return: result as str
     '''
-    for temp in globals.VLSIlist:
+    for temp in globals.logicxlist:
         while (not temp.function()):
  #           output = temp.func[len(temp.func)-1].output
             pass
-    temp = globals.VLSIlist[len(globals.VLSIlist)-1]
+    temp = globals.logicxlist[len(globals.logicxlist)-1]
     return str(globals.varlist.varlist[temp.variables[temp.func[len(temp.func)-1].output]])
         
 
@@ -53,7 +53,7 @@ def calculate_result():
 
 def parse_string(inputstring):
     '''
-    This function split and parse input expression and save in VLSI format
+    This function split and parse input expression and save in logicx format
     :param inputstring: input expression
     :type inputstring : str
     :return: None
@@ -86,8 +86,8 @@ def parse_string(inputstring):
             end = len(temp) - 1
             indexcounter += 1
             packname = ('#%d#' % indexcounter)
-            tempobject = VLSI(temp,packname,len(globals.VLSIlist))
-            globals.VLSIlist.append(tempobject)
+            tempobject = logicx(temp,packname,len(globals.logicxlist))
+            globals.logicxlist.append(tempobject)
             break
             
         
@@ -95,8 +95,8 @@ def parse_string(inputstring):
             indexcounter+=1
             temp1 = temp[start+1:end]
             packname = ('#%d#' % indexcounter) #    (a+b) -> #indexcounter# and is saved as a var 
-            tempobject = VLSI(temp1,packname,len(globals.VLSIlist))
-            globals.VLSIlist.append(tempobject)
+            tempobject = logicx(temp1,packname,len(globals.logicxlist))
+            globals.logicxlist.append(tempobject)
             temp = temp[:start]+('#%d#' % (indexcounter)) + temp[end+1:]
             start = -2
             end = -1

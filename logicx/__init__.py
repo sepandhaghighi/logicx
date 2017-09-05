@@ -1,4 +1,4 @@
-from .VLSI import *
+from .logicx import *
 from .parser2 import *
 from . import globals
 from .generator_2 import *

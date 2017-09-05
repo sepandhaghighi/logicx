@@ -1,4 +1,4 @@
-from .VLSI import *
+from .logicx import *
 from .parser2 import *
 import platform
 from . import globals

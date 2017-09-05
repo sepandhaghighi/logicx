@@ -54,7 +54,7 @@ class funcObject:
     
     
 
-class VLSI:
+class logicx:
 
 #    variables = []
 #    func = []
@@ -69,12 +69,12 @@ class VLSI:
     
     def __init__(self,string,output,index):
         '''
-           Initializer for the VLSI class
+           Initializer for the logicx class
            :param string: input string to be parsed
            :type string : str
            :param output: pointer to the variable containing the output value of this object
            :type output: int
-           :param index: index of the VLSI object, for it to be unique in case of replacing variables
+           :param index: index of the logicx object, for it to be unique in case of replacing variables
            :type index: int
            '''
         if check_valid(string):
@@ -231,14 +231,14 @@ class VLSI:
     
     def __str__(self):
         #This Function Is For Showing the Object In Print Format
-        return "VLSI("+self.input+")"
+        return "logicx("+self.input+")"
     def __repr__(self):
-        # Representing VLSI Object
-        return "VLSI_Object(Input_String="+self.input+")"
+        # Representing logicx Object
+        return "logicx_Object(Input_String="+self.input+")"
 
     def function(self):
         '''
-           Running the function binded to the VLSI object with given inputs from self.variables array
+           Running the function binded to the logicx object with given inputs from self.variables array
            '''
         result = 0
         self.make_verilog()
@@ -255,7 +255,7 @@ class VLSI:
     def make_verilog(self):
         '''
            Make Verilog file function
-           creates a text file describing the VLSI object using Verilog language
+           creates a text file describing the logicx object using Verilog language
            this verilog file will be next used in the scripts
            '''
         file_name = 'F' + self.packname.replace("#",'')

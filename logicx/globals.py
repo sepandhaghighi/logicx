@@ -11,8 +11,8 @@ class inputVars:
         pass
 
 def init():
-    global varlist, inputs, VLSIlist,table
+    global varlist, inputs, logicxlist,table
     varlist = Variables()
     inputs = inputVars()
-    VLSIlist = []
+    logicxlist = []
     table = []
